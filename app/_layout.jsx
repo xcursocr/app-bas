@@ -1,11 +1,29 @@
 import "../global.css"
 import { Stack } from "expo-router";
+import { StatusBar } from 'expo-status-bar';
+import { ToogleStatusBar } from "../theme";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { isDarkTheme } from "@/theme";
+import { Platform } from "react-native";
 
 export default function RootLayout() {
+
+  const StatusBarColor = ToogleStatusBar()
+  const isDark = isDarkTheme()
+
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="index" />
-      <Stack.Screen name="(tabs)" />
-    </Stack>
+    <SafeAreaView className={`${isDark ? "bg-slate-700" : ""} flex-1`}
+      style={
+        [
+          Platform.OS == "android" && { paddingBottom: 55 },
+          Platform.OS == "ios" && { paddingBottom: 20 },
+        ]}
+    >
+      <StatusBar style={StatusBarColor} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" initialParams={{ isDark }} />
+        <Stack.Screen name="(tabs)" initialParams={{ isDark }} />
+      </Stack>
+    </SafeAreaView>
   );
 }

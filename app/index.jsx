@@ -1,28 +1,14 @@
-import { useRouter } from "expo-router";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
+import { useRouter, useGlobalSearchParams } from "expo-router";
 
 export default function Index() {
 
+  const { isDark } = useGlobalSearchParams();
   const route = useRouter()
 
   return (
-    <View
-      className="bg-red-500 h-48"
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-
-      <Pressable
-        className="mt-4 p-4 bg-slate-700 rounded-xl"
-        // onPress={() => route.push("/tutorial")}
-        onPress={() => route.push("/(tabs)/home")}
-      >
-        <Text className="text-white">ENTRAR</Text>
-      </Pressable>
-
+    <View className={`${isDark ? "bg-slate-700" : ""} flex-1`}>
+      <Text className={`${isDark ? "text-white" : ""}`}>Entrar al sistema</Text>
     </View>
   );
 }
