@@ -12,7 +12,7 @@ export default function RootLayout() {
   const isDark = isDarkTheme()
 
   return (
-    <SafeAreaView className={`${isDark ? "bg-slate-700" : ""} flex-1`}
+    <SafeAreaView className={`${isDark ? "bg-slate-700" : "bg-white"} flex-1`}
       style={
         [
           Platform.OS == "android" && { paddingBottom: 55 },
@@ -21,8 +21,8 @@ export default function RootLayout() {
     >
       <StatusBar style={StatusBarColor} />
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" initialParams={{ isDark }} />
-        <Stack.Screen name="(tabs)" initialParams={{ isDark }} />
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(tabs)" />
       </Stack>
     </SafeAreaView>
   );

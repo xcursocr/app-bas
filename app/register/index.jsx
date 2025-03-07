@@ -1,5 +1,6 @@
 import { Image, Pressable, Text, View } from "react-native";
-import { LoginForm } from "../components/Auth/LoginForm"
+import placehoderUser from "../../assets/images/user.png";
+import { RegisterForm } from "../../components/Auth/RegisterForm"
 import { useRouter } from "expo-router";
 export default function Index() {
 
@@ -11,34 +12,34 @@ export default function Index() {
 				flex-1 px-8 `}>
       <View
         className="flex-row
-				justify-center items-center py-10">
+				justify-center items-center py-20">
         <Image
-          // source={require(placehoderUser)}
-          source={require("../assets/images/logo.png")}
-          className="w-64 h-64"
+          source={placehoderUser}
+          className="w-40 h-40 rounded-full
+				border-2 border-yellow-50"
         />
       </View>
       {/* 
 				Form
 				*/}
-      <LoginForm
+      <RegisterForm
       />
       <View
 
         className="flex-row
-      justify-center
-py-5 mb-4">
-        <Pressable onPress={() => router.push("/register")}>
+							justify-center
+				py-5 mb-4">
+        <Pressable onPress={() => router.push("/")}>
           <Text
 
             className="dark:text-gray-100 font-normal">
-            No
+            Ya
 
             tienes
 
             cuenta?
             {" "}
-            <Text className="dark:text-yellow-300 font-black">Crear cuenta</Text>
+            <Text className="dark:text-yellow-300 font-black">Inicia Session</Text>
           </Text>
         </Pressable>
       </View>
