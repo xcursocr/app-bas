@@ -1,13 +1,17 @@
-import { View, TextInput } from 'react-native'
+import { View, TextInput } from "react-native";
 import { useRouter } from "expo-router";
 import { UiButton } from "../Ui/UiButton";
 
 export function RegisterForm() {
+  const route = useRouter();
 
-  const route = useRouter()
+  const handleRegister = async () => {
+    alert("Registrado");
+    route.push("/register");
+  };
 
   return (
-    <View className='flex-1 justify-between align-middle'>
+    <View className="flex-1 justify-between align-middle">
       {/* form */}
       <View>
         <TextInput
@@ -22,9 +26,12 @@ export function RegisterForm() {
         />
       </View>
       {/* button */}
-      <View className='px-10'>
-        <UiButton text={"Registrarse"} router={() => route.push("/(tabs)/home")} />
+      <View className="px-10">
+        <UiButton
+          text={"Registrarse"}
+          router={() => route.push(handleRegister)}
+        />
       </View>
     </View>
-  )
+  );
 }

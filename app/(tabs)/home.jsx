@@ -1,6 +1,23 @@
-import { Platform, SafeAreaView, StatusBar, Text, View } from "react-native";
+import {
+  Platform,
+  Pressable,
+  SafeAreaView,
+  StatusBar,
+  Text,
+  View,
+} from "react-native";
+import { useAuth } from "../../hooks";
+import { useRouter } from "expo-router";
 
 export default function Home() {
+  const { logout } = useAuth();
+  const route = useRouter();
+
+  const logOut = () => {
+    logout();
+    route.replace("/login");
+  };
+
   return (
     <SafeAreaView
       className="bg-black flex-1"
@@ -19,11 +36,15 @@ export default function Home() {
           {" "}
           Welcome to{" "}
         </Text> */}
-        <Text className="text-white font-bold text-6xl">
-          WELCOME
-        </Text>
+        <Text className="text-white font-bold text-6xl">WELCOME</Text>
         <Text className="text-yellow-200 text-center">Empecemos</Text>
+        <Pressable
+          onPress={logOut}
+          className="p-2 dark:bg-cyan-400 my-4 rounded-2xl"
+        >
+          <Text>Cerrar Session</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
-  )
+  );
 }

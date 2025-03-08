@@ -1,13 +1,32 @@
-import { View, TextInput } from 'react-native'
+import { View, TextInput } from "react-native";
 import { useRouter } from "expo-router";
-import { UiButton } from "../Ui/UiButton";
+import { UiButton } from "@/components/Ui/UiButton";
+import { authCtrl } from "../../api/auth";
+import { useAuth } from "../../hooks";
+import { useEffect } from "react";
 
 export function LoginForm() {
+  const route = useRouter();
+  const { login, user } = useAuth();
 
-  const route = useRouter()
+  useEffect(() => {
+    if (user) {
+      route.replace("/home");
+    }
+  }, [user]);
+
+  const handleLogin = async () => {
+    try {
+      const resp = { access: "SHJDK546456456456SSDSD3434" };
+      await authCtrl.setToken(resp.access);
+      await login(resp.access);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
-    <View className='flex-1 justify-between align-middle'>
+    <View className="flex-1 justify-between align-middle">
       {/* form */}
       <View>
         <TextInput
@@ -22,9 +41,9 @@ export function LoginForm() {
         />
       </View>
       {/* button */}
-      <View className='px-10'>
-        <UiButton text={"Iniciar Session"} router={() => route.push("/(tabs)/home")} />
+      <View className="px-10">
+        <UiButton text={"Iniciar Session"} router={handleLogin} />
       </View>
     </View>
-  )
+  );
 }
